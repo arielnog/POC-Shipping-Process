@@ -75,3 +75,21 @@ docker-compose exec app_php php artisan queue:work --timeout=0
    
 4. Passo
    - Após o processamento da fila, checar o banco de dados na tabela `shipping`.
+
+
+## Adicionais
+
+
+### Testes
+- Para rodar os testes.
+
+```shell
+docker-compose exec app_php composer test
+```
+
+### Coverage
+- Para gerar o coverage.
+
+```shell
+docker-compose exec app_php composer test-coverage-html
+```
