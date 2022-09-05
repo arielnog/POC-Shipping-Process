@@ -20,7 +20,7 @@ class CreateShippingTable extends Migration
             $table->float('from_weight')->nullable(false);
             $table->float('to_weight')->nullable(false);
             $table->float('cost')->nullable(false);
-            $table->foreignId('file_control_id')->constrained('file_control')->cascadeOnDelete();
+            $table->foreignId('file_control_id')->constrained('file_control');
             $table->softDeletes();
             $table->timestamps();
         });

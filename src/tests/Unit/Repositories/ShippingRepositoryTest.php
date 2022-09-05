@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Service;
+namespace Tests\Unit\Repositories;
 
 use App\Entities\Client as ClientEntity;
 use App\Entities\Shipping as ShippingEntity;
@@ -55,6 +55,6 @@ class ShippingRepositoryTest extends TestCase
         $response = new ShippingRepository($this->shippingModelMock);
         $result = $response->create($shipping);
 
-        self::assertInstanceOf(ShippingEntity::class, $result);
+        self::assertInstanceOf(Shipping::class, $result);
     }
 }

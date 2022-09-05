@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Unit\Services;
 
 use App\DataTransferObject\ProcessFileDTO;
 use App\Entities\Collection\FileControlCollection;

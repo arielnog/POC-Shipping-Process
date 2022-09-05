@@ -17,13 +17,12 @@ class ShippingRepository implements ShippingRepositoryInterface
     /**
      * @throws InvalidArgumentException
      */
-    public function create(Shipping $shipping): Shipping
+    public function create(Shipping $shipping): ShippingModel
     {
-        $shipping = $this->shipping
+        return $this->shipping
             ->create(
                 $shipping->toSave()
             );
 
-        return ShippingFactory::fromModel($shipping);
     }
 }

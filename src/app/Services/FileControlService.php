@@ -112,11 +112,6 @@ class FileControlService
      */
     public function processFile(ProcessFileDTO $fileDTO)
     {
-        $context = [
-            'file_status' => FileStatus::UnprocessedStatus(),
-            'path_name' => $fileDTO->getPathNames()
-        ];
-
         try {
             $filesControl = $this->fileControlRepository
                 ->getByStatusAndName(

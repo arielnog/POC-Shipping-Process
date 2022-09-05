@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Service;
+namespace Tests\Unit\Repositories;
 
 use App\Entities\Client as ClientEntity;
 use App\Exceptions\InvalidArgumentException;

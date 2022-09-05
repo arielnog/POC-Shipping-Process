@@ -26,7 +26,7 @@ class ShippingService
     public function createShippingFromParser(FileControl $fileControl, Resource $file): bool
     {
         try {
-            $csvRows = CsvHelper::fromFile($file);
+            $csvRows = CsvHelper::fromFile($file->getContent());
             $keys = [];
 
             DB::beginTransaction();

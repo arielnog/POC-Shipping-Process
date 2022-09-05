@@ -8,14 +8,14 @@ use Generator;
 class CsvHelper
 {
     /**
-     * @param Resource $file
+     * @param mixed $file
      * @return Generator
      */
-    public static function fromFile(Resource $file): Generator
+    public static function fromFile(mixed $file): Generator
     {
-        while (!feof($file->getContent())) {
+        while (!feof($file)) {
             yield fgetcsv(
-                $file->getContent(),
+                $file,
                 separator: ';'
             );
         }

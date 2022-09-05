@@ -1,8 +1,9 @@
 <?php
 
-namespace Tests\Unit\Service;
+namespace Tests\Unit\Services;
 
 use App\Entities\Client;
+use App\Exceptions\ClientSaveException;
 use App\Exceptions\InvalidArgumentException;
 use App\Factories\ClientFactory;
 use App\Repositories\ClientRepositoryInterface;
@@ -10,6 +11,7 @@ use App\Services\ClientService;
 use App\ValueObjects\Uuid;
 use Mockery;
 use Tests\TestCase;
+use Throwable;
 
 class ClientServiceTest extends TestCase
 {
@@ -22,20 +24,21 @@ class ClientServiceTest extends TestCase
     }
 
     /**
-     * @throws \App\Exceptions\ClientSaveException
-     * @throws \App\Exceptions\InvalidArgumentException
+     * @throws ClientSaveException
+     * @throws InvalidArgumentException|Throwable
      */
     public function testCreateClientWithSuccess()
     {
         $arr = [
             'name' => 'teste',
-            'uuid' => Uuid::generate()->toString()
+            'uuid' => Uuid::generate()->toString(),
+            'id' => null
         ];
 
         $client = ClientFactory::fromArray($arr);
 
         $this->clientRepositoryMock
-            ->shouldReceive('save')
+            ->shouldReceive('create')
             ->andReturn($client);
 
         $response = new ClientService(
@@ -48,12 +51,17 @@ class ClientServiceTest extends TestCase
         self::assertEquals($arr,$result->toArray());
     }
 
+    /**
+     * @return void
+     * @throws InvalidArgumentException
+     * @throws Throwable
+     */
     public function testCreateClientWithEmptyParams(): void
     {
         self::expectException(InvalidArgumentException::class);
 
         $this->clientRepositoryMock
-            ->shouldReceive('save')
+            ->shouldReceive('create')
             ->andReturnNull();
 
         $response = new ClientService(

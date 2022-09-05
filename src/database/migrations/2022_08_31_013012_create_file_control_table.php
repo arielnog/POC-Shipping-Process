@@ -19,7 +19,7 @@ class CreateFileControlTable extends Migration
             $table->string('file_name')->nullable('false');
             $table->string('path')->nullable('false');
             $table->enum('status', ['Processed', 'Unprocessed'])->nullable('false');
-            $table->foreignId('client_id')->constrained('clients')->cascadeOnDelete();
+            $table->foreignId('client_id')->constrained('clients');
             $table->softDeletes();
             $table->timestamps();
         });

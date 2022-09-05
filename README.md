@@ -12,6 +12,8 @@ Essa aplicação é uma API, que contém os seguintes recursos:
 - Laravel 8
 - MySQL
 
+**Obs.** Aplicação desenvolvida e testada em plataformas Windows.
+
 ## Ambiente
 
 - PHP 8.1.1
@@ -35,22 +37,22 @@ Essa aplicação é uma API, que contém os seguintes recursos:
 docker-compose up -d --build
 ```
 
-- Gere a key do projeto
+- Entrar no container da aplicação(`app_php`), gere a key do projeto
 
 ```bash
-docker-compose exec app_php php artisan key:generate
+php artisan key:generate
 ```
 
-- Execute a migrations.
+- Ainda no container citado acima, execute a migrations.
 
 ```bash
-docker-compose exec app_php php artisan migrate
+php artisan migrate
 ```
 
-- Se quiser, existe uma seeder de Clientes, para usa-lá.
+- Se quiser, existe uma seeder de Clientes, para usa-lá. (Executar no container)
 
 ```bash
-docker-compose exec app_php php artisan db:seed
+php artisan db:seed
 ```
 
 ## Execução da aplicação
@@ -60,9 +62,9 @@ docker-compose exec app_php php artisan db:seed
 ### Etapas
 
 1. Passo:
-   - Executar o seguinte comando:
+   - Executar o seguinte comando dentro do container da aplicação(`app_php`):
 ```shell
-docker-compose exec app_php php artisan queue:work --timeout=0
+ php artisan queue:work --timeout=0
 ```
 
 2. Passo 
@@ -81,15 +83,15 @@ docker-compose exec app_php php artisan queue:work --timeout=0
 
 
 ### Testes
-- Para rodar os testes.
+- Para rodar os testes, executar o seguinte comando dentro do container da aplicação(`app_php`).
 
 ```shell
-docker-compose exec app_php composer test
+composer test
 ```
 
 ### Coverage
-- Para gerar o coverage.
+- Para gerar o coverage , executar o seguinte comando dentro do container da aplicação(`app_php`).
 
 ```shell
-docker-compose exec app_php composer test-coverage-html
+composer test-coverage-html
 ```

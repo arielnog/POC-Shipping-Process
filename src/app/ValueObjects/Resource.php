@@ -35,10 +35,7 @@ final class Resource
         }
     }
 
-    /**
-     * @return mixed
-     */
-    public function getContent(): mixed
+    public function getContent()
     {
         return $this->content;
     }

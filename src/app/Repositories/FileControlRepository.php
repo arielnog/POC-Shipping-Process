@@ -15,7 +15,7 @@ class FileControlRepository implements FileControlRepositoryInterface
     ) {
     }
 
-    public function create(FileControl $fileControl)
+    public function create(FileControl $fileControl): FileControlModel
     {
         return $this->fileControl
             ->create(
